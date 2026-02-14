@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Safety Record</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f6f8;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+button {
+    background: #006400;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<form id="recordForm">
+<h2>Create Worksite Record</h2>
+
+<input placeholder="Name of Site" id="siteName" required>
+<input placeholder="Site Address" id="siteAddress" required>
+<input placeholder="Reference" id="reference" required>
+<input type="date" id="issueDate" required>
+<input type="date" id="validity" required>
+<input placeholder="Processed by" id="processedBy" required>
+<input placeholder="Site Contact" id="siteContact" required>
+<input placeholder="Phone No." id="phone" required>
+
+<button type="submit">Generate QR</button>
+
+</form>
+
+<script>
+document.getElementById("recordForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = {
+        siteName: siteName.value,
+        siteAddress: siteAddress.value,
+        reference: reference.value,
+        issueDate: issueDate.value,
+        validity: validity.value,
+        processedBy: processedBy.value,
+        siteContact: siteContact.value,
+        phone: phone.value
+    };
+
+    const query = new URLSearchParams(data).toString();
+
+    const url = "https://biyi0003.github.io/?" + query;
+
+    const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(url);
+
+    window.open(qrApi, "_blank");
+});
+</script>
+
+</body>
+</html>
