@@ -69,22 +69,22 @@ document.getElementById("recordForm").addEventListener("submit", function(e){
     const recordId = generateId();
 
     const data = {
-        siteName: siteName.value,
-        siteAddress: siteAddress.value,
-        reference: reference.value,
-        issueDate: issueDate.value,
-        validity: validity.value,
-        processedBy: processedBy.value,
-        siteContact: siteContact.value,
-        phone: phone.value,
-        recordId: recordId
+        siteName: document.getElementById("siteName").value,
+        siteAddress: document.getElementById("siteAddress").value,
+        reference: document.getElementById("reference").value,
+        issueDate: document.getElementById("issueDate").value,
+        validity: document.getElementById("validity").value,
+        processedBy: document.getElementById("processedBy").value,
+        siteContact: document.getElementById("siteContact").value,
+        phone: document.getElementById("phone").value,
+        recordId: recordId   // 🔥 THIS WAS MISSING
     };
 
     const query = new URLSearchParams(data).toString();
 
     const url = "https://biyi0003.github.io/?" + query;
 
-    const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + encodeURIComponent(url);
+    const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(url);
 
     window.open(qrApi, "_blank");
 });
