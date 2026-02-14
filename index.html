@@ -131,6 +131,19 @@
     </div>
 
 </div>
+<script>
+const params = new URLSearchParams(window.location.search);
+
+document.querySelectorAll(".value")[0].innerText = params.get("siteName") || "";
+document.querySelectorAll(".value")[1].innerText = params.get("siteAddress") || "";
+document.querySelectorAll(".value")[2].innerText = params.get("reference") || "";
+document.querySelectorAll(".value")[3].innerText = params.get("issueDate") || "";
+document.querySelectorAll(".value")[4].innerText = params.get("validity") || "";
+document.querySelectorAll(".value")[5].innerText = params.get("processedBy") || "";
+document.querySelectorAll(".value")[6].innerText = params.get("siteContact") || "";
+document.querySelectorAll(".value")[7].innerText = params.get("phone") || "";
+</script>
 
 </body>
 </html>
+
