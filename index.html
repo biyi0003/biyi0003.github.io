@@ -164,21 +164,12 @@ document.getElementById("processedBy").innerText = params.get("processedBy") || 
 document.getElementById("siteContact").innerText = params.get("siteContact") || "—";
 document.getElementById("phone").innerText = params.get("phone") || "—";
 
-/* 🔥 Auto Generate Unique ID */
-function generateId(length = 20) {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-}
-
-document.getElementById("recordId").innerText = generateId();
+document.getElementById("recordId").innerText = params.get("recordId") || "—";
 </script>
 
 </body>
 </html>
+
 
 
 
