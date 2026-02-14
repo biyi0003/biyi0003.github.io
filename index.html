@@ -31,12 +31,16 @@
     }
 
     .phone-screen {
-        width: 393px; /* iPhone Pro width */
-        min-height: 100vh;
-        background: #ffffff;
-        padding: 20px;
-        box-sizing: border-box;
-    }
+    width: 393px;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 25px;
+    box-sizing: border-box;
+
+    border: 1px solid #e5e5e5;   /* thin border */
+    border-radius: 12px;         /* small curve */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* soft shadow */
+}
 
     .header {
         text-align: center;
@@ -176,6 +180,7 @@ document.getElementById("recordId").innerText = params.get("recordId") || "—";
 
 </body>
 </html>
+
 
 
 
