@@ -71,9 +71,10 @@
     }
 
     .label {
-        font-size: 12px;
-        color: #777;
-    }
+    font-size: 12px;
+    font-weight: 500;   /* slightly bold */
+    color: #444;        /* slightly darker */
+}
 
     .value {
     font-size: 14px;
@@ -146,10 +147,11 @@
     <img src="copy.png" style="width:80px; height:auto;">
 </div>
 </div>
-        
-    
-
 </div>
+<div class="footer">
+    Verified by Lagos State Safety Commission
+</div>
+    
 <script>
 const params = new URLSearchParams(window.location.search);
 
@@ -167,6 +169,7 @@ document.getElementById("recordId").innerText = params.get("recordId") || "—";
 
 </body>
 </html>
+
 
 
 
