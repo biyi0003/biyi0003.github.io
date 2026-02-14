@@ -73,8 +73,8 @@
         margin-top: 3px;
     }
     .logo {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: auto;
     object-fit: contain;
     }
 </style>
@@ -133,6 +133,15 @@
             <div class="label">Phone No.</div>
             <div class="value">0800 000 0000</div>
         </div>
+        
+    </div>
+    <div class="detail-item" style="border:none; text-align:center; margin-top:25px;">
+    <div class="label">ID:</div>
+    <div class="value" id="recordId" style="font-size:16px;"></div>
+    </div>
+
+    <div style="text-align:center; margin-top:15px;">
+    <img src="copy.png" id="verificationImage" style="width:120px; height:auto;">
     </div>
 
 </div>
@@ -151,5 +160,6 @@ document.querySelectorAll(".value")[7].innerText = params.get("phone") || "";
 
 </body>
 </html>
+
 
 
