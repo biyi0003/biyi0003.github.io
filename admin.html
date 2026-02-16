@@ -84,7 +84,7 @@ document.getElementById("recordForm").addEventListener("submit", function(e){
 
     const url = "https://biyi0003.github.io/?" + query;
 
-    const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&ecc=H&data=" + encodeURIComponent(url);
+    const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=" + encodeURIComponent(url);
 
     window.open(qrApi, "_blank");
 });
