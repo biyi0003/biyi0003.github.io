@@ -89,6 +89,58 @@ document.getElementById("recordForm").addEventListener("submit", function(e){
     window.open(qrApi, "_blank");
 });
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAUtcugYmKBdem-6fOOaxoVzvCSdb4rako",
+  authDomain: "lagos-safety-commission.firebaseapp.com",
+  projectId: "lagos-safety-commission",
+  storageBucket: "lagos-safety-commission.firebasestorage.app",
+  messagingSenderId: "71659839270",
+  appId: "1:71659839270:web:c4b118167f0701085d2be7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Generate random ID
+function generateID(length = 20) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+document.getElementById("adminForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const id = generateID();
+
+  const data = {
+    siteName: document.getElementById("siteName").value,
+    siteAddress: document.getElementById("siteAddress").value,
+    reference: document.getElementById("reference").value,
+    issueDate: document.getElementById("issueDate").value,
+    validity: document.getElementById("validity").value,
+    processedBy: document.getElementById("processedBy").value,
+    siteContact: document.getElementById("siteContact").value,
+    phone: document.getElementById("phone").value,
+    id: id
+  };
+
+  await setDoc(doc(db, "records", id), data);
+
+  const url = "https://biyi0003.github.io/?id=" + id;
+
+  const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=" + encodeURIComponent(url);
+
+  document.getElementById("qrImage").src = qrApi;
+});
+</script>
 
 </body>
 </html>
