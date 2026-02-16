@@ -167,9 +167,48 @@ document.getElementById("phone").innerText = params.get("phone") || "—";
 
 document.getElementById("recordId").innerText = params.get("recordId") || "—";
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAUtcugYmKBdem-6fOOaxoVzvCSdb4rako",
+  authDomain: "lagos-safety-commission.firebaseapp.com",
+  projectId: "lagos-safety-commission",
+  storageBucket: "lagos-safety-commission.firebasestorage.app",
+  messagingSenderId: "71659839270",
+  appId: "1:71659839270:web:c4b118167f0701085d2be7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if (id) {
+  const docRef = doc(db, "records", id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+
+    document.getElementById("siteName").textContent = data.siteName;
+    document.getElementById("siteAddress").textContent = data.siteAddress;
+    document.getElementById("reference").textContent = data.reference;
+    document.getElementById("issueDate").textContent = data.issueDate;
+    document.getElementById("validity").textContent = data.validity;
+    document.getElementById("processedBy").textContent = data.processedBy;
+    document.getElementById("siteContact").textContent = data.siteContact;
+    document.getElementById("phone").textContent = data.phone;
+    document.getElementById("generatedId").textContent = data.id;
+  }
+}
+</script>
 
 </body>
 </html>
+
 
 
 
