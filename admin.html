@@ -115,7 +115,8 @@ function generateID(length = 20) {
   return result;
 }
 
-document.getElementById("adminForm").addEventListener("submit", async function(e) {
+document.getElementById("recordForm").addEventListener("submit", async function(e) {
+
   e.preventDefault();
 
   const id = generateID();
