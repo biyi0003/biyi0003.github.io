@@ -53,42 +53,6 @@ button {
 
 </form>
 
-<script>
-function generateId(length = 20) {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-}
-
-document.getElementById("recordForm").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    const recordId = generateId();
-
-    const data = {
-        siteName: document.getElementById("siteName").value,
-        siteAddress: document.getElementById("siteAddress").value,
-        reference: document.getElementById("reference").value,
-        issueDate: document.getElementById("issueDate").value,
-        validity: document.getElementById("validity").value,
-        processedBy: document.getElementById("processedBy").value,
-        siteContact: document.getElementById("siteContact").value,
-        phone: document.getElementById("phone").value,
-        recordId: recordId   // 🔥 THIS WAS MISSING
-    };
-
-    const query = new URLSearchParams(data).toString();
-
-    const url = "https://biyi0003.github.io/?" + query;
-
-    const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=" + encodeURIComponent(url);
-
-    window.open(qrApi, "_blank");
-});
-</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
@@ -105,7 +69,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Generate random ID
 function generateID(length = 20) {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
@@ -116,7 +79,6 @@ function generateID(length = 20) {
 }
 
 document.getElementById("recordForm").addEventListener("submit", async function(e) {
-
   e.preventDefault();
 
   const id = generateID();
@@ -129,8 +91,7 @@ document.getElementById("recordForm").addEventListener("submit", async function(
     validity: document.getElementById("validity").value,
     processedBy: document.getElementById("processedBy").value,
     siteContact: document.getElementById("siteContact").value,
-    phone: document.getElementById("phone").value,
-    id: id
+    phone: document.getElementById("phone").value
   };
 
   await setDoc(doc(db, "records", id), data);
@@ -139,7 +100,7 @@ document.getElementById("recordForm").addEventListener("submit", async function(
 
   const qrApi = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&ecc=H&data=" + encodeURIComponent(url);
 
-  document.getElementById("qrImage").src = qrApi;
+  window.open(qrApi, "_blank");
 });
 </script>
 
